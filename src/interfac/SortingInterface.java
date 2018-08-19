@@ -40,37 +40,13 @@ public class SortingInterface extends JFrame{
 		
 		pack();
 	}
+	
+	public void sort(String[] data, int code){
+		sorting.sort(data, code);
+	}
+	
 	public static void main(String[] args) {
 		SortingInterface i = new SortingInterface();
 		i.setVisible(true);
-	}
-	
-	public void sort(String[] data, int code) {
-		switch(code) {
-		case 1:
-			float[] numbers = convertArray(data);
-			sorting.sort(numbers);
-			break;
-			
-		case 2:
-			
-			break;
-		}
-		
-	}
-	
-	public float[] convertArray(String[] a) {
-		float[] newArray = new float[a.length];
-		
-		try {
-			for (int i = 0; i < newArray.length; i++) {
-				newArray[i] = Float.parseFloat(a[i]);
-			}
-		}
-		catch(Exception e) {
-			System.out.println("Failed to sort the numbers");
-		}
-		
-		return newArray;
 	}
 }
