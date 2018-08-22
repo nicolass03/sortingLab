@@ -12,12 +12,12 @@ public class Sorting {
 
 	}
 
-	public float[] convertArray(String[] a) {
-		float[] newArray = new float[a.length];
+	public int[] convertArray(String[] a) {
+		int[] newArray = new int[a.length];
 
 		try {
 			for (int i = 0; i < newArray.length; i++) {
-				newArray[i] = Float.parseFloat(a[i]);
+				newArray[i] = Integer.parseInt(a[i]);
 			}
 		}
 		catch(Exception e) {
@@ -30,7 +30,7 @@ public class Sorting {
 	public void sort(String[] data, int code) {
 		switch(code) {
 		case 1:
-			float[] numbers = convertArray(data);
+			int[] numbers = convertArray(data);
 			break;
 
 		case 2:
@@ -73,7 +73,8 @@ public class Sorting {
 					}
 				}
 			}
-		}else {
+		}
+		else {
 			for (int i = 0; i < array.length; i++) {
 				array[i] =  rnd.nextInt(range);
 			}
@@ -92,31 +93,24 @@ public class Sorting {
 
 
 	public int[] arraySortReverse(boolean dif, int size, int range) {
-		int[] array = arraySorted(dif, size, range);
-
+		int[] array = arrayRandom(dif, size, range);
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length; j++) {
+				if (array[i] >= array[j]) {
+					int x = array[i];
+					array[i] = array[j];
+					array[j] = x;
+				}
+			}
+		}
 		return array;
 	}
 
 	public int[] arrayPercentage(boolean dif, int size, int range, double percentage) {
-		int[] array = new int[size];
-		Random rnd = new Random();
-		if(dif) {
-			array[0] = rnd.nextInt(range);
-			for (int i = 1; i < array.length; i++) {
-				array[i] =  rnd.nextInt(range);
-				for (int j = 0; j < i; j++) {
-					if(array[i] == array[j]) {
-						i--;
-					}
-				}
-			}
-		}else {
-			for (int i = 0; i < array.length; i++) {
-				array[i] =  rnd.nextInt(range);
-			}
-		}
-		array = selectionSort(array);
 
+		int[] array = arraySorted(dif,size,range);
+
+		Random rnd = new Random();
 		int k = (int) (array.length * percentage);
 		int contador = 0; 
 		while(contador < k){
@@ -166,7 +160,7 @@ public class Sorting {
 
 	///////////////////////// SORTING METHODS BEGIN ////////////////////////////////////////
 
-	public static int[] countingSort(int[] array) {    
+	public int[] countingSort(int[] array) {    
 		int[] aux = new int[array.length];
 
 		int min = array[0];
@@ -194,15 +188,16 @@ public class Sorting {
 
 		return aux;
 	}
-	
+
 	//////////////////////////////////// HEAP //////////////////////////////////////////
 
 	public void heapSort(int arr[]) {
+
 		int n = arr.length;
 
 		// Build heap (rearrange array)
 		for (int i = n / 2 - 1; i >= 0; i--)
-			heapify(arr, n, i);
+			auxHeap(arr, n, i);
 
 		// One by one extract an element from heap
 		for (int i=n-1; i>=0; i--)
@@ -213,13 +208,13 @@ public class Sorting {
 			arr[i] = temp;
 
 			// call max heapify on the reduced heap
-			heapify(arr, i, 0);
+			auxHeap(arr, i, 0);
 		}
 	}
 
 	// To heapify a subtree rooted with node i which is
 	// an index in arr[]. n is size of heap
-	public void heapify(int arr[], int n, int i) {
+	public void auxHeap(int arr[], int n, int i) {
 		int largest = i;  // Initialize largest as root
 		int l = 2*i + 1;  // left = 2*i + 1
 		int r = 2*i + 2;  // right = 2*i + 2
@@ -240,12 +235,12 @@ public class Sorting {
 			arr[largest] = swap;
 
 			// Recursively heapify the affected sub-tree
-			heapify(arr, n, largest);
+			auxHeap(arr, n, largest);
 		}
 	}
 
 	/////////////////////////////// RADIX ////////////////////////////////
-	
+
 	public int getMax(int arr[], int n) {
 		int mx = arr[0];
 		for (int i = 1; i < n; i++)
@@ -297,6 +292,65 @@ public class Sorting {
 			countSort(arr, n, exp);
 	}
 
+	//////////////////////////////////////// QUICK SORT /////////////////////////////////////////////////////////////
+	
+	public int partition(int arr[], int left, int right){
+
+		int i = left, j = right;
+
+		int tmp;
+
+		int pivot = arr[(left + right) / 2];
+
+
+
+		while (i <= j) {
+
+			while (arr[i] < pivot)
+
+				i++;
+
+			while (arr[j] > pivot)
+
+				j--;
+
+			if (i <= j) {
+
+				tmp = arr[i];
+
+				arr[i] = arr[j];
+
+				arr[j] = tmp;
+
+				i++;
+
+				j--;
+
+			}
+
+		};
+
+
+
+		return i;
+
+	}
+
+
+
+	public void quickSort(int arr[], int left, int right) {
+
+		int index = partition(arr, left, right);
+
+		if (left < index - 1)
+
+			quickSort(arr, left, index - 1);
+
+		if (index < right)
+
+			quickSort(arr, index, right);
+
+	}
 
 	//Added by Nicolas
 

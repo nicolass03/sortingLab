@@ -7,7 +7,7 @@ public class Test {
 	
 ////////////////////////////////////////////////////////////////////////////
 		long befor = System.nanoTime();
-		int[] array2 = s.arraySorted(false, 10, 60);
+		int[] array2 = s.arraySortReverse(false, 1000, 10);
 		long after = System.nanoTime();
 		
 		System.out.println("Took "+(after-befor)+" create Santi array"+ "\n");
@@ -17,8 +17,9 @@ public class Test {
 		}
 		System.out.println("\n");
 
+		int[] arr = array2.clone();
 		long bef2 = System.nanoTime();
-		int[] counting = s.countingSort(array2);
+		int[] counting = s.countingSort(arr);
 		long af2 = System.nanoTime();
 
 		System.out.println("It took "+(af2-bef2)+" nanoseconds to counting");
@@ -49,6 +50,18 @@ public class Test {
 		System.out.println("It took "+(af4-bef4)+" nanoseconds to RADIX");
 		for (int i = 0; i < cl2.length; i++) {
 			System.out.println(cl[i]);
+		}
+		System.out.println("\n");
+		
+		int[] cl3 = array2.clone();
+		
+		long bef5 = System.nanoTime();
+		s.quickSort(cl3, 0, cl3.length-1);
+		long af5 = System.nanoTime();
+		
+		System.out.println("It took "+(af5-bef5)+" nanoseconds to Quick");
+		for (int i = 0; i < cl3.length; i++) {
+			System.out.println(cl3[i]);
 		}
 
 	}
