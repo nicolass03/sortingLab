@@ -34,12 +34,12 @@ public class Sorting {
 		double[] newArray = new double[a.length];
 
 		try {
-			for (int i = 0; i < newArray.length; i++) {
+			for (int i = 0; i < a.length; i++) {
 				newArray[i] = Double.parseDouble(a[i]);
 			}
 		}
 		catch(Exception e) {
-			System.out.println("Failed to convert the numbers");
+			e.printStackTrace();
 		}
 
 		return newArray;
@@ -201,7 +201,7 @@ public class Sorting {
 		String rQuick = "It took "+(t2-t1)+" nanoseconds to Quick Sort";
 		
 		//Counting Sort
-		int[] counting = new int[1];
+		double[] counting = new double[1];
 		counting[0] = 0;
 		String rCounting = "Couldn´t sort the array with Counting Sort";
 		
@@ -360,8 +360,8 @@ public class Sorting {
 		int k = (int) (array.length * percentage);
 		int contador = 0; 
 		while(contador < k){
-			int pos1 = rnd.nextInt(range);
-			int pos2 = rnd.nextInt(range);
+			int pos1 = rnd.nextInt(size);
+			int pos2 = rnd.nextInt(size);
 			if(pos1 != pos2) {
 				int aux = array[pos2];
 				array[pos1] = array[pos2];
@@ -378,11 +378,11 @@ public class Sorting {
 		double[] array = arraySortedDouble(dif,size,range);
 		
 		Random rnd = new Random();
-		int k = (int) (array.length * percentage);
+		int k = (int) (array.length * (percentage/100));
 		int contador = 0; 
 		while(contador < k){
-			int pos1 = rnd.nextInt(range);
-			int pos2 = rnd.nextInt(range);
+			int pos1 = rnd.nextInt(size);
+			int pos2 = rnd.nextInt(size);
 			if(pos1 != pos2) {
 				double aux = array[pos2];
 				array[pos1] = array[pos2];

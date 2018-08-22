@@ -28,7 +28,7 @@ public class InputPanel extends JPanel implements ActionListener{
 		setBorder(BorderFactory.createTitledBorder("Input"));
 		
 		numbers = new JTextField();
-		numbers.setPreferredSize(new Dimension(115,50));
+		numbers.setPreferredSize(new Dimension(115,20));
 		labelNumbers = new JLabel("Enter numbers to sort (separated by -): ");
 		
 		sort = new JButton("Sort");
@@ -66,10 +66,10 @@ public class InputPanel extends JPanel implements ActionListener{
 		
 		if(e.getActionCommand().equals(SORT)) {
 			if(doub.isSelected()) {
-				si.sortDouble(getData(), 2);				
+				si.sortDouble(getData(), 0);				
 			}
 			else {
-				si.sortInt(getData(), 2);
+				si.sortInt(getData(), 0);
 			}
 		}
 	}

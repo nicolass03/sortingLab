@@ -47,7 +47,7 @@ public class GeneratePanel extends JPanel implements ItemListener, ActionListene
 		
 		setLayout(new FlowLayout());
 		setBorder(BorderFactory.createTitledBorder("Generate"));
-		setPreferredSize(new Dimension(333,190));
+		setPreferredSize(new Dimension(333,230));
 		
 		rangeLabel = new JLabel("Range:");
 		sizeLabel = new JLabel("Size:");
