@@ -24,7 +24,7 @@ public class SortingInterface extends JFrame{
 		setLayout(new BorderLayout());
 		setTitle("Sorting program");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(350,300));
+		setPreferredSize(new Dimension(550,300));
 		setResizable(false);
 		
 		sorting = new Sorting();
@@ -44,8 +44,28 @@ public class SortingInterface extends JFrame{
 		pack();
 	}
 	
-	public void sort(String[] data, int code){
-		ArrayList results = sorting.sort(data, code);
+	public void sortInt(String[] data, int code){
+		ArrayList results = sorting.sortInt(data, code);
+		String txt = "";
+		for (int i = 0; i < results.size(); i++) {
+			if(i%2 == 0){
+				String d = (String) results.get(i);
+				txt += d+"\n";
+			}
+			else{
+				String word = "";
+				int[] arr = (int[]) results.get(i);
+				for (int j = 0; j < arr.length; j++) {
+					word += arr[j]+"    ";
+				}
+				txt+="Result: "+word+"\n"+"\n";
+			}
+		}
+		JOptionPane.showMessageDialog(this, txt);
+	}
+	
+	public void sortDouble(String[] data, int code){
+		ArrayList results = sorting.sortDouble(data, code);
 		String txt = "";
 		for (int i = 0; i < results.size(); i++) {
 			if(i%2 == 0){

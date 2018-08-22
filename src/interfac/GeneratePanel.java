@@ -9,11 +9,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class GeneratePanel extends JPanel implements ItemListener, ActionListener{
@@ -32,6 +34,9 @@ public class GeneratePanel extends JPanel implements ItemListener, ActionListene
 	private JCheckBox canRepeat;
 	
 	private JComboBox options;
+	
+	private JRadioButton integ;
+	private JRadioButton doub;	
 	
 	private SortingInterface si;
 	
@@ -60,6 +65,16 @@ public class GeneratePanel extends JPanel implements ItemListener, ActionListene
 		options.addItemListener(this);
 		optionsLabel = new JLabel("Options");
 		
+		doub = new JRadioButton("Double");
+		integ = new JRadioButton("Integer");
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(integ);
+		bg.add(doub);
+		
+		JPanel au = new JPanel(new FlowLayout());
+		au.add(integ);
+		au.add(doub);
+		
 		JPanel aux = new JPanel(new FlowLayout());
 		aux.setPreferredSize(new Dimension(325,25));
 		aux.add(rangeLabel);
@@ -87,6 +102,7 @@ public class GeneratePanel extends JPanel implements ItemListener, ActionListene
 		sort.addActionListener(this);
 		sort.setActionCommand(SORT);
 		
+		add(au);
 		add(aux);
 		add(aux1);
 		add(aux3);
@@ -131,7 +147,12 @@ public class GeneratePanel extends JPanel implements ItemListener, ActionListene
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals(SORT)) {
-			si.sort(getData(), 2);
+			if(doub.isSelected()) {
+				si.sortDouble(getData(), 2);				
+			}
+			else {
+				si.sortInt(getData(), 2);
+			}
 		}
 	}
 }
