@@ -3,8 +3,10 @@ package interfac;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.Sorting;
@@ -13,7 +15,7 @@ public class SortingInterface extends JFrame{
 
 	private InputPanel inputPanel;
 	private GeneratePanel generatePanel;
-	private ResultsPanel resultsPanel;
+//	private ResultsPanel resultsPanel;
 	
 	private Sorting sorting;
 	
@@ -22,13 +24,14 @@ public class SortingInterface extends JFrame{
 		setLayout(new BorderLayout());
 		setTitle("Sorting program");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(660,300));
+		setPreferredSize(new Dimension(350,300));
+		setResizable(false);
 		
 		sorting = new Sorting();
 		
 		inputPanel = new InputPanel(this);
 		generatePanel = new GeneratePanel(this);
-		resultsPanel = new ResultsPanel(this);
+//		resultsPanel = new ResultsPanel(this);
 		
 		JPanel aux = new JPanel(new FlowLayout());
 		aux.setPreferredSize(new Dimension());
@@ -36,13 +39,29 @@ public class SortingInterface extends JFrame{
 		aux.add(generatePanel);
 		
 		add(aux, BorderLayout.CENTER);
-		add(resultsPanel, BorderLayout.EAST);
+//		add(resultsPanel, BorderLayout.EAST);
 		
 		pack();
 	}
 	
 	public void sort(String[] data, int code){
-		sorting.sort(data, code);
+		ArrayList results = sorting.sort(data, code);
+		String txt = "";
+		for (int i = 0; i < results.size(); i++) {
+			if(i%2 == 0){
+				String d = (String) results.get(i);
+				txt += d+"\n";
+			}
+			else{
+				String word = "";
+				int[] arr = (int[]) results.get(i);
+				for (int j = 0; j < arr.length; j++) {
+					word += arr[j]+"    ";
+				}
+				txt+="Result: "+word+"\n"+"\n";
+			}
+		}
+		JOptionPane.showMessageDialog(this, txt);
 	}
 	
 	public static void main(String[] args) {

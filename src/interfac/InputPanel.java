@@ -47,7 +47,7 @@ public class InputPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equals(SORT)) {
-			si.sort(getData(), 1);
+			si.sort(getData(), 0);
 		}
 	}
 

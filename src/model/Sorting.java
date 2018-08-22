@@ -8,6 +8,9 @@ import java.util.Random;
 
 public class Sorting {
 
+	public static final int INPUT = 0;
+	public static final int GENERATE = 1;
+	
 	public Sorting(){
 
 	}
@@ -27,10 +30,39 @@ public class Sorting {
 		return newArray;
 	}
 
-	public void sort(String[] data, int code) {
+	public ArrayList sort(String[] data, int code) {
+		ArrayList text = new ArrayList();
 		switch(code) {
-		case 1:
+		case INPUT:
 			int[] numbers = convertArray(data);
+			
+			//Quick Sort
+			int[] quick = numbers.clone();
+			long t1 = System.nanoTime();
+			quickSort(quick, 0, quick.length-1);
+			long t2 = System.nanoTime();
+			String rQuick = "It took "+(t2-t1)+" nanoseconds to Quick Sort";
+			
+			//Counting Sort
+			t1 = System.nanoTime();
+			int[] counting = countingSort(numbers);
+			t2 = System.nanoTime();
+			String rCounting = "It took "+(t2-t1)+" nanoseconds to Counting Sort";
+			
+			//Heap Sort
+			int[] heap = numbers.clone();
+			t1 = System.nanoTime();
+			heapSort(heap);
+			t2 = System.nanoTime();
+			String rHeap = "It took "+(t2-t1)+" nanoseconds to Heap Sort";
+			
+			text.add(rQuick);
+			text.add(quick);
+			text.add(rCounting);
+			text.add(counting);
+			text.add(rHeap);
+			text.add(heap);
+			
 			break;
 
 		case 2:
@@ -38,6 +70,7 @@ public class Sorting {
 			break;
 		}
 
+		return text;
 	}
 
 	public int[] generateArrayInteger(int form, boolean dif, int size, int range, double percentage) {
