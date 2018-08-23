@@ -16,22 +16,18 @@ public class Sorting {
 
 	}
 
-	public int[] convertArrayToInt(String[] a) {
+	public int[] convertArrayToInt(String[] a) throws NumberFormatException{
 		int[] newArray = new int[a.length];
 
-		try {
-			for (int i = 0; i < newArray.length; i++) {
-				newArray[i] = Integer.parseInt(a[i]);
-			}
+		for (int i = 0; i < newArray.length; i++) {
+			newArray[i] = Integer.parseInt(a[i]);
 		}
-		catch(Exception e) {
-			System.out.println("Failed to convert the numbers");
-		}
-
+		
 		return newArray;
 	}
 
-	public double[] convertArrayToDouble(String[] a) {
+
+	public double[] convertArrayToDouble(String[] a)  throws NumberFormatException{
 		double[] newArray = new double[a.length];
 
 		try {
@@ -46,7 +42,7 @@ public class Sorting {
 		return newArray;
 	}
 
-	public ArrayList sortInt(String[] data, int code) {
+	public ArrayList sortInt(String[] data, int code)  throws NumberFormatException{
 
 		ArrayList text = new ArrayList();
 
@@ -136,65 +132,65 @@ public class Sorting {
 
 		return text;
 	}
-	
-	public ArrayList sortDouble(String[] data, int code) {
-		
+
+	public ArrayList sortDouble(String[] data, int code)  throws NumberFormatException{
+
 		ArrayList text = new ArrayList();
-		
+
 		double[] arr;
-		
+
 		if(code == INPUT) {
 			arr = convertArrayToDouble(data);
 		}
-		
+
 		else {
-			
+
 			///////////////
-			
+
 			int range = Integer.parseInt(data[0]);
-			
+
 			///////////////
-			
+
 			int size = Integer.parseInt(data[1]);
-			
+
 			/////////////////
 			int form;
-			
+
 			if(data[2].equals("Ordered")){
 				form =  1;
-				
+
 			}
 			else if(data[2].equals("Ordered backwards")) {
 				form =  2;
-				
+
 			}
 			else if(data[2].equals("Random")) {
 				form =  3;
-				
+
 			}
 			else {
 				form =  4;
-				
+
 			}
-			
+
 			//////////////////
-			
+
 			boolean dif;
 			if(data[3].equals("true"))
 				dif = true;
 			else
 				dif = false;
-			
+
 			///////////////////
-			
+
 			int percentage = 0;
 			if(!data[4].equals(""))
 				percentage = Integer.parseInt(data[4]);
-			
+
 			//////////////////
-			
+
 			arr = generateArrayDouble(form, dif, size, range, percentage);
-			
+
 		}
 		//Quick Sort
 		double[] quick = arr.clone();
@@ -202,19 +198,19 @@ public class Sorting {
 		quickSortDouble(quick, 0, quick.length-1);
 		long t2 = System.nanoTime();
 		String rQuick = "It took "+(t2-t1)+" nanoseconds to Quick Sort";
-		
+
 		//Counting Sort
 		double[] counting = new double[1];
 		counting[0] = 0;
 		String rCounting = "Couldn´t sort the array with Counting Sort";
-		
+
 		//Heap Sort
 		double[] heap = arr.clone();
 		t1 = System.nanoTime();
 		heapSortDouble(heap);
 		t2 = System.nanoTime();
 		String rHeap = "It took "+(t2-t1)+" nanoseconds to Heap Sort";
-		
+
 		text.add("This is the array to sort:");
 		text.add(arr);
 		text.add(rQuick);
@@ -223,7 +219,7 @@ public class Sorting {
 		text.add(counting);
 		text.add(rHeap);
 		text.add(heap);
-		
+
 		return text;
 	}
 
@@ -247,7 +243,7 @@ public class Sorting {
 		return array;
 
 	}
-	
+
 	public double[] generateArrayDouble(int form, boolean dif, int size, int range, double percentage) {
 		double[] array = new double[size];
 		switch(form) {
@@ -263,15 +259,15 @@ public class Sorting {
 		case 4:
 			array = arrayPercentageDouble(dif, size, range, percentage);
 		}
-		
+
 		return array;
-		
+
 	}
 
 	public int[] arrayRandom(boolean dif, int size, int range) {
 		int[] array = new int[size];
 		Random rnd = new Random();
-		if(dif) {
+		if(!dif) {
 			array[0] = rnd.nextInt(range);
 			for (int i = 1; i < array.length; i++) {
 				array[i] =  rnd.nextInt(range);
@@ -289,11 +285,11 @@ public class Sorting {
 		}
 		return array;
 	}
-	
+
 	public String replace(String s) {
 		return s.replace(",", ".");
 	}
-	
+
 	public double[] arrayRandomDouble(boolean dif, int size, int range) {
 		double[] array = new double[size];
 		Random rnd = new Random();
@@ -324,12 +320,12 @@ public class Sorting {
 		return array;
 
 	}
-	
+
 	public double[] arraySortedDouble(boolean dif, int size, int range) {
 		double[] array = arrayRandomDouble(dif, size, range);
 		Arrays.sort(array);
 		return array;
-		
+
 	}
 
 
@@ -346,7 +342,7 @@ public class Sorting {
 		}
 		return array;
 	}
-	
+
 	public double[] arraySortReverseDouble(boolean dif, int size, int range) {
 		double[] array = arrayRandomDouble(dif, size, range);
 		for (int i = 0; i < array.length; i++) {
@@ -373,33 +369,36 @@ public class Sorting {
 			int pos2 = rnd.nextInt(size);
 			if(pos1 != pos2) {
 				int aux = array[pos2];
-				array[pos1] = array[pos2];
-				array[pos2] = aux;
+				array[pos2] = array[pos1];
+				array[pos1] = aux;
 				contador++;
 			}
 		}
 
 		return array;
 	}
-	
+
 	public double[] arrayPercentageDouble(boolean dif, int size, int range, double percentage) {
-		
+
 		double[] array = arraySortedDouble(dif,size,range);
-		
+
 		Random rnd = new Random();
 		int k = (int) (array.length * (percentage/100));
+		System.out.println(k);
 		int contador = 0; 
 		while(contador < k){
-			int pos1 = rnd.nextInt(size);
-			int pos2 = rnd.nextInt(size);
+			int pos1 = 0;
+			int pos2 = array.length-1;
 			if(pos1 != pos2) {
 				double aux = array[pos2];
-				array[pos1] = array[pos2];
-				array[pos2] = aux;
+				array[pos2] = array[pos1];
+				array[pos1] = aux;
 				contador++;
+				pos2--;
+				pos1++;
 			}
 		}
-		
+
 		return array;
 	}
 
@@ -438,13 +437,13 @@ public class Sorting {
 
 
 	public void heapSort(int arr[]) {
-		
+
 		int n = arr.length;
-		
+
 		// Build heap (rearrange array)
 		for (int i = n / 2 - 1; i >= 0; i--)
 			auxHeap(arr, n, i);
-		
+
 		// One by one extract an element from heap
 		for (int i=n-1; i>=0; i--)
 		{
@@ -452,47 +451,47 @@ public class Sorting {
 			int temp = arr[0];
 			arr[0] = arr[i];
 			arr[i] = temp;
-			
+
 			// call max heapify on the reduced heap
 			auxHeap(arr, i, 0);
 		}
 	}
-	
+
 	// To heapify a subtree rooted with node i which is
 	// an index in arr[]. n is size of heap
 	public void auxHeap(int arr[], int n, int i) {
 		int largest = i;  // Initialize largest as root
 		int l = 2*i + 1;  // left = 2*i + 1
 		int r = 2*i + 2;  // right = 2*i + 2
-		
+
 		// If left child is larger than root
 		if (l < n && arr[l] > arr[largest])
 			largest = l;
-		
+
 		// If right child is larger than largest so far
 		if (r < n && arr[r] > arr[largest])
 			largest = r;
-		
+
 		// If largest is not root
 		if (largest != i)
 		{
 			int swap = arr[i];
 			arr[i] = arr[largest];
 			arr[largest] = swap;
-			
+
 			// Recursively heapify the affected sub-tree
 			auxHeap(arr, n, largest);
 		}
 	}
-	
+
 	public void heapSortDouble(double arr[]) {
-		
+
 		int n = arr.length;
-		
+
 		// Build heap (rearrange array)
 		for (int i = n / 2 - 1; i >= 0; i--)
 			auxHeapDouble(arr, n, i);
-		
+
 		// One by one extract an element from heap
 		for (int i=n-1; i>=0; i--)
 		{
@@ -500,34 +499,34 @@ public class Sorting {
 			double temp = arr[0];
 			arr[0] = arr[i];
 			arr[i] = temp;
-			
+
 			// call max heapify on the reduced heap
 			auxHeapDouble(arr, i, 0);
 		}
 	}
-	
+
 	// To heapify a subtree rooted with node i which is
 	// an index in arr[]. n is size of heap
 	public void auxHeapDouble(double arr[], int n, int i) {
 		int largest = i;  // Initialize largest as root
 		int l = 2*i + 1;  // left = 2*i + 1
 		int r = 2*i + 2;  // right = 2*i + 2
-		
+
 		// If left child is larger than root
 		if (l < n && arr[l] > arr[largest])
 			largest = l;
-		
+
 		// If right child is larger than largest so far
 		if (r < n && arr[r] > arr[largest])
 			largest = r;
-		
+
 		// If largest is not root
 		if (largest != i)
 		{
 			double swap = arr[i];
 			arr[i] = arr[largest];
 			arr[largest] = swap;
-			
+
 			// Recursively heapify the affected sub-tree
 			auxHeapDouble(arr, n, largest);
 		}
@@ -644,63 +643,63 @@ public class Sorting {
 			quickSort(arr, index, right);
 
 	}
-	
+
 	public int partitionDouble(double arr[], int left, int right){
-		
+
 		int i = left, j = right;
-		
+
 		double tmp;
-		
+
 		double pivot = arr[(left + right) / 2];
-		
-		
-		
+
+
+
 		while (i <= j) {
-			
+
 			while (arr[i] < pivot)
-				
+
 				i++;
-			
+
 			while (arr[j] > pivot)
-				
+
 				j--;
-			
+
 			if (i <= j) {
-				
+
 				tmp = arr[i];
-				
+
 				arr[i] = arr[j];
-				
+
 				arr[j] = tmp;
-				
+
 				i++;
-				
+
 				j--;
-				
+
 			}
-			
+
 		};
-		
-		
-		
+
+
+
 		return i;
-		
+
 	}
-	
-	
-	
+
+
+
 	public void quickSortDouble(double arr[], int left, int right) {
-		
+
 		int index = partitionDouble(arr, left, right);
-		
+
 		if (left < index - 1)
-			
+
 			quickSortDouble(arr, left, index - 1);
-		
+
 		if (index < right)
-			
+
 			quickSortDouble(arr, index, right);
-		
+
 	}
 
 	//Added by Nicolas
