@@ -124,6 +124,8 @@ public class Sorting {
 		t2 = System.nanoTime();
 		String rHeap = "It took "+(t2-t1)+" nanoseconds to Heap Sort";
 
+		text.add("This is the array to sort:");
+		text.add(arr);
 		text.add(rQuick);
 		text.add(quick);
 		text.add(rCounting);
@@ -212,6 +214,8 @@ public class Sorting {
 		t2 = System.nanoTime();
 		String rHeap = "It took "+(t2-t1)+" nanoseconds to Heap Sort";
 		
+		text.add("This is the array to sort:");
+		text.add(arr);
 		text.add(rQuick);
 		text.add(quick);
 		text.add(rCounting);
