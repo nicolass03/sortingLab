@@ -9,13 +9,30 @@ import java.util.Random;
 
 public class Sorting {
 
+	/**
+	 * Constant for INPUT option.
+	 */
 	public static final int INPUT = 0;
+	
+	/**
+	 * Constant for Generate option.
+	 */
 	public static final int GENERATE = 1;
 
+	
+	/**
+	 * Constructor of the class
+	 */
 	public Sorting(){
 
 	}
 
+	/**
+	 * Converts String array into int array
+	 * @param a - the string array to convert
+	 * @return the array converted to int[]
+	 * @throws NumberFormatException
+	 */
 	public int[] convertArrayToInt(String[] a) throws NumberFormatException{
 		int[] newArray = new int[a.length];
 
@@ -26,7 +43,12 @@ public class Sorting {
 		return newArray;
 	}
 
-
+	/**
+	 * Converts String array into double array
+	 * @param a - the string array to convert
+	 * @return the array converted to double[]
+	 * @throws NumberFormatException
+	 */
 	public double[] convertArrayToDouble(String[] a)  throws NumberFormatException{
 		double[] newArray = new double[a.length];
 
@@ -42,6 +64,13 @@ public class Sorting {
 		return newArray;
 	}
 
+	/**
+	 * Sorts the int array given.
+	 * @param data the array to sort.
+	 * @param code 1 for generate, 0 for input.
+	 * @return the information including sorted array with different sorting methods and their time.
+	 * @throws NumberFormatException
+	 */
 	public ArrayList sortInt(String[] data, int code)  throws NumberFormatException{
 
 		ArrayList text = new ArrayList();
@@ -132,7 +161,14 @@ public class Sorting {
 
 		return text;
 	}
-
+	
+	/**
+	 * Sorts the double array given.
+	 * @param data the array to sort.
+	 * @param code 1 for generate, 0 for input.
+	 * @return the information including sorted array with different sorting methods and their time.
+	 * @throws NumberFormatException
+	 */
 	public ArrayList sortDouble(String[] data, int code)  throws NumberFormatException{
 
 		ArrayList text = new ArrayList();
@@ -223,7 +259,15 @@ public class Sorting {
 		return text;
 	}
 
-
+	/**
+	 * Generates an integer array according to the parameters
+	 * @param form - the way the array is going to be created
+	 * @param dif - if the  numbers can be repeated
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @param percentage - the percentage of order
+	 * @return
+	 */
 	public int[] generateArray(int form, boolean dif, int size, int range, double percentage) {
 		int[] array = new int[size];
 		switch(form) {
@@ -244,6 +288,15 @@ public class Sorting {
 
 	}
 
+	/**
+	 * Generates a double array according to the parameters
+	 * @param form - the way the array is going to be created
+	 * @param dif - if the  numbers can be repeated
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @param percentage - the percentage of order
+	 * @return
+	 */
 	public double[] generateArrayDouble(int form, boolean dif, int size, int range, double percentage) {
 		double[] array = new double[size];
 		switch(form) {
@@ -264,6 +317,13 @@ public class Sorting {
 
 	}
 
+	/**
+	 * Generates a random integer array with no specific order
+	 * @param dif - if the numbers can be repeated 
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @return - the integer array according to the parameters
+	 */
 	public int[] arrayRandom(boolean dif, int size, int range) {
 		int[] array = new int[size];
 		Random rnd = new Random();
@@ -286,10 +346,22 @@ public class Sorting {
 		return array;
 	}
 
+	/**
+	 * Replaces "," char with "." on the string given.
+	 * @param s - the string to replace
+	 * @return - the string with char replaced 
+	 */
 	public String replace(String s) {
 		return s.replace(",", ".");
 	}
 
+	/**
+	 * Generates a random double array with no specific order
+	 * @param dif - if the numbers can be repeated 
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @return - the double array according to the parameters
+	 */
 	public double[] arrayRandomDouble(boolean dif, int size, int range) {
 		double[] array = new double[size];
 		Random rnd = new Random();
@@ -314,6 +386,13 @@ public class Sorting {
 		return array;
 	}
 
+	/**
+	 * Generates a random ordered array
+	 * @param dif - if the numbers can be repeated 
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @return - the integer array according to the parameters
+	 */
 	public int[] arraySorted(boolean dif, int size, int range) {
 		int[] array = arrayRandom(dif, size, range);
 		Arrays.sort(array);
@@ -321,6 +400,13 @@ public class Sorting {
 
 	}
 
+	/**
+	 * Generates a random ordered array.
+	 * @param dif - if the numbers can be repeated 
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @return - the double array according to the parameters
+	 */
 	public double[] arraySortedDouble(boolean dif, int size, int range) {
 		double[] array = arrayRandomDouble(dif, size, range);
 		Arrays.sort(array);
@@ -328,7 +414,13 @@ public class Sorting {
 
 	}
 
-
+	/**
+	 * Generates a random sorted backwards integer array.
+	 * @param dif - if the numbers can be repeated 
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @return - the integer array according to the parameters
+	 */
 	public int[] arraySortReverse(boolean dif, int size, int range) {
 		int[] array = arrayRandom(dif, size, range);
 		for (int i = 0; i < array.length; i++) {
@@ -342,7 +434,14 @@ public class Sorting {
 		}
 		return array;
 	}
-
+	
+	/**
+	 * Generates a random sorted backwards double array.
+	 * @param dif - if the numbers can be repeated 
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @return - the double array according to the parameters
+	 */
 	public double[] arraySortReverseDouble(boolean dif, int size, int range) {
 		double[] array = arrayRandomDouble(dif, size, range);
 		for (int i = 0; i < array.length; i++) {
@@ -356,7 +455,15 @@ public class Sorting {
 		}
 		return array;
 	}
-
+	
+	/**
+	 * Generates a random integer array partially sorted.
+	 * @param dif - if the numbers can be repeated 
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @param percentage - the percentage to be ordered
+	 * @return - the integer array according to the parameters
+	 */
 	public int[] arrayPercentage(boolean dif, int size, int range, double percentage) {
 
 		int[] array = arraySorted(dif,size,range);
@@ -377,12 +484,19 @@ public class Sorting {
 
 		return array;
 	}
-
+	
+	/**
+	 * Generates a random double array partially sorted.
+	 * @param dif - if the numbers can be repeated 
+	 * @param size - the size of the array
+	 * @param range - the range of each number
+	 * @param percentage - the percentage to be ordered
+	 * @return - the double array according to the parameters
+	 */
 	public double[] arrayPercentageDouble(boolean dif, int size, int range, double percentage) {
 
 		double[] array = arraySortedDouble(dif,size,range);
 
-		Random rnd = new Random();
 		int k = (int) (array.length * (percentage/100));
 		System.out.println(k);
 		int contador = 0; 
@@ -404,6 +518,11 @@ public class Sorting {
 
 	///////////////////////// SORTING METHODS BEGIN ////////////////////////////////////////
 
+	/**
+	 * Counting sort integer implementation
+	 * @param array - the integer array to sort
+	 * @return - the integer array sorted
+	 */
 	public int[] countingSort(int[] array) {    
 		int[] aux = new int[array.length];
 
@@ -435,7 +554,11 @@ public class Sorting {
 
 	//////////////////////////////////// HEAP //////////////////////////////////////////
 
-
+	/**
+	 * Heap sort integer implementation
+	 * @param array - the integer array to sort
+	 * @return - the integer array sorted
+	 */
 	public void heapSort(int arr[]) {
 
 		int n = arr.length;
@@ -445,8 +568,7 @@ public class Sorting {
 			auxHeap(arr, n, i);
 
 		// One by one extract an element from heap
-		for (int i=n-1; i>=0; i--)
-		{
+		for (int i=n-1; i>=0; i--){
 			// Move current root to end
 			int temp = arr[0];
 			arr[0] = arr[i];
@@ -457,8 +579,12 @@ public class Sorting {
 		}
 	}
 
-	// To heapify a subtree rooted with node i which is
-	// an index in arr[]. n is size of heap
+	/**
+	 * Heapifys a subtree rooted with node i 
+	 * @param arr
+	 * @param n - is size of heap
+	 * @param i - is an index in arr[]
+	 */
 	public void auxHeap(int arr[], int n, int i) {
 		int largest = i;  // Initialize largest as root
 		int l = 2*i + 1;  // left = 2*i + 1
@@ -473,8 +599,7 @@ public class Sorting {
 			largest = r;
 
 		// If largest is not root
-		if (largest != i)
-		{
+		if (largest != i){
 			int swap = arr[i];
 			arr[i] = arr[largest];
 			arr[largest] = swap;
@@ -483,7 +608,12 @@ public class Sorting {
 			auxHeap(arr, n, largest);
 		}
 	}
-
+	
+	/**
+	 * Heap sort double implementation
+	 * @param array - the double array to sort
+	 * @return - the double array sorted
+	 */
 	public void heapSortDouble(double arr[]) {
 
 		int n = arr.length;
@@ -505,8 +635,12 @@ public class Sorting {
 		}
 	}
 
-	// To heapify a subtree rooted with node i which is
-	// an index in arr[]. n is size of heap
+	/**
+	 * Heapifys a subtree rooted with node i 
+	 * @param arr
+	 * @param n - is size of heap
+	 * @param i - is an index in arr[]
+	 */
 	public void auxHeapDouble(double arr[], int n, int i) {
 		int largest = i;  // Initialize largest as root
 		int l = 2*i + 1;  // left = 2*i + 1
@@ -521,8 +655,7 @@ public class Sorting {
 			largest = r;
 
 		// If largest is not root
-		if (largest != i)
-		{
+		if (largest != i){
 			double swap = arr[i];
 			arr[i] = arr[largest];
 			arr[largest] = swap;
@@ -534,184 +667,99 @@ public class Sorting {
 	
 	//////////////////////////////////////// QUICK SORT /////////////////////////////////////////////////////////////
 
+	/**
+	 * Divides the integer array
+	 * @param arr array to be divided
+	 * @param left - first position
+	 * @param right - last position
+	 * @return - the position of the new half
+	 */
 	public int partition(int arr[], int left, int right){
 
 		int i = left, j = right;
-
 		int tmp;
-
 		int pivot = arr[(left + right) / 2];
 
-
-
 		while (i <= j) {
-
 			while (arr[i] < pivot)
-
 				i++;
 
 			while (arr[j] > pivot)
-
 				j--;
 
 			if (i <= j) {
-
 				tmp = arr[i];
-
 				arr[i] = arr[j];
-
 				arr[j] = tmp;
-
 				i++;
-
 				j--;
-
 			}
-
-		};
-
-
-
+		}
 		return i;
-
 	}
 
-
-
+	/**
+	 * Quicksort implementation for integer array 
+	 * @param arr - the array to be sorted
+	 * @param left - the first position
+	 * @param right - the last position
+	 */
 	public void quickSort(int arr[], int left, int right) {
 
 		int index = partition(arr, left, right);
 
 		if (left < index - 1)
-
 			quickSort(arr, left, index - 1);
-
 		if (index < right)
-
 			quickSort(arr, index, right);
 
 	}
 
+	/**
+	 * Divides the double array
+	 * @param arr array to be divided
+	 * @param left - first position
+	 * @param right - last position
+	 * @return - the position of the new half
+	 */
 	public int partitionDouble(double arr[], int left, int right){
 
 		int i = left, j = right;
-
 		double tmp;
-
 		double pivot = arr[(left + right) / 2];
 
-
-
 		while (i <= j) {
-
 			while (arr[i] < pivot)
-
 				i++;
 
 			while (arr[j] > pivot)
-
 				j--;
 
 			if (i <= j) {
-
 				tmp = arr[i];
-
 				arr[i] = arr[j];
-
 				arr[j] = tmp;
-
 				i++;
-
 				j--;
-
 			}
-
-		};
-
-
-
+		}
 		return i;
-
 	}
-
-
-
+	
+	/**
+	 * Quicksort implementation for double array 
+	 * @param arr - the array to be sorted
+	 * @param left - the first position
+	 * @param right - the last position
+	 */
 	public void quickSortDouble(double arr[], int left, int right) {
 
 		int index = partitionDouble(arr, left, right);
 
 		if (left < index - 1)
-
 			quickSortDouble(arr, left, index - 1);
-
 		if (index < right)
-
 			quickSortDouble(arr, index, right);
 
-	}
-
-	//Added by Nicolas
-
-	public List<Integer> randomArray(boolean dif, int size, int range) {
-		List<Integer> array = new ArrayList<Integer>();
-		Random rnd = new Random();
-		if(dif) {
-			array.add(rnd.nextInt(range));
-			for (int i = 1; i < size; i++) {
-				array.add(rnd.nextInt(range));
-				for (int j = 0; j < i; j++) {
-					if(array.get(i) == array.get(j)) {
-						i--;
-					}
-				}
-			}
-		}else {
-			for (int i = 0; i < array.size(); i++) {
-				array.add(rnd.nextInt(range));;
-			}
-		}
-		return array;
-	}
-
-	public int[] randomArraySorted(boolean dif, int size, int range) {
-		List<Integer> array = randomArray(dif, size, range);
-		Collections.sort(array);
-		return listToArray(array);
-	}
-
-
-	public int[] randomArrayReverseSort(boolean dif, int size, int range) {
-		List<Integer> array = randomArray(dif, size, range);
-		Collections.sort(array, Collections.reverseOrder());
-		return listToArray(array);
-	}
-
-	public int[] randomArrayPercentage(boolean dif, int size, int range, double percentage) {
-
-		List<Integer> list = randomArray(dif, size, range);
-		Collections.sort(list);
-		int[] array = listToArray(list);
-
-		int k = (int) (array.length * percentage);
-		int contador = 0; 
-		Random rnd = new Random();
-
-		while(contador < k){
-			int pos1 = rnd.nextInt(range);
-			int pos2 = rnd.nextInt(range);
-			if(pos1 != pos2) {
-				int aux = array[pos2];
-				array[pos1] = array[pos2];
-				array[pos2] = aux;
-				contador++;
-			}
-		}
-
-		return array;
-	}
-
-
-	public static int[] listToArray(List<Integer> list) {
-		return list.stream().mapToInt(i -> i).toArray();
 	}
 }
