@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -289,13 +290,19 @@ public class Sorting {
 		return array;
 	}
 	
+	public String replace(String s) {
+		return s.replace(",", ".");
+	}
+	
 	public double[] arrayRandomDouble(boolean dif, int size, int range) {
 		double[] array = new double[size];
 		Random rnd = new Random();
-		if(dif) {
-			array[0] = range * rnd.nextDouble();
+		DecimalFormat df = new DecimalFormat("#.##");
+		if(!dif) {
+			array[0] = Double.valueOf(replace(df.format(range * rnd.nextDouble())));
 			for (int i = 1; i < array.length; i++) {
-				array[i] =  range * rnd.nextDouble();
+				array[i] = Double.valueOf(replace(df.format(range * rnd.nextDouble())));
+
 				for (int j = 0; j < i; j++) {
 					if(array[i] == array[j]) {
 						i--;
@@ -305,7 +312,7 @@ public class Sorting {
 		}
 		else {
 			for (int i = 0; i < array.length; i++) {
-				array[i] =  range * rnd.nextDouble();
+				array[i] =  Double.valueOf(replace(df.format(range * rnd.nextDouble())));
 			}
 		}
 		return array;
@@ -324,8 +331,6 @@ public class Sorting {
 		return array;
 		
 	}
-
-
 
 
 	public int[] arraySortReverse(boolean dif, int size, int range) {
