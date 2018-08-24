@@ -469,7 +469,7 @@ public class Sorting {
 		int[] array = arraySorted(dif,size,range);
 
 		Random rnd = new Random();
-		int k = (int) (array.length * percentage);
+		int k = (int) (array.length * (percentage/100));
 		int contador = 0; 
 		while(contador < k){
 			int pos1 = rnd.nextInt(size);
@@ -497,25 +497,24 @@ public class Sorting {
 
 		double[] array = arraySortedDouble(dif,size,range);
 
+		Random rnd = new Random();
 		int k = (int) (array.length * (percentage/100));
-		System.out.println(k);
 		int contador = 0; 
 		while(contador < k){
-			int pos1 = 0;
-			int pos2 = array.length-1;
+			int pos1 = rnd.nextInt(size);
+			int pos2 = rnd.nextInt(size);
 			if(pos1 != pos2) {
 				double aux = array[pos2];
 				array[pos2] = array[pos1];
 				array[pos1] = aux;
 				contador++;
-				pos2--;
-				pos1++;
 			}
 		}
 
 		return array;
 	}
 
+	
 	///////////////////////// SORTING METHODS BEGIN ////////////////////////////////////////
 
 	/**

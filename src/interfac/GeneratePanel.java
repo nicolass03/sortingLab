@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 public class GeneratePanel extends JPanel implements ItemListener, ActionListener{
 
-	public static final String[] DATA_OPTIONS = {"Ordered", "Ordered backwards","Random","Percentually order"};
+	public static final String[] DATA_OPTIONS = {"Ordered", "Ordered backwards","Random","Percentually disorder"};
 	public static final String SORT = "n";
 	
 	private JTextField range;
